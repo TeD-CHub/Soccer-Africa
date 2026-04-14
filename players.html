@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Player Stats | Soccer Africa</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="css/styles.css?v=2" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head>
+<body class="page-body">
+<div class="stadium-bg-effects">
+<div class="stadium-light"></div>
+<div class="stadium-light stadium-light-2"></div>
+</div>
+<nav class="navbar" id="navbar">
+<div class="nav-container">
+<a class="logo" href="index.html">
+<img alt="Soccer Africa Logo" src="assets/images/logo.png"/>
+<span>SOCCER AFRICA</span>
+</a>
+<ul class="nav-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="programs.html">Programs</a></li>
+<li><a href="coaches.html">Coaches</a></li>
+<li><a class="active" href="players.html">Players</a></li>
+<li><a href="gallery.html">Gallery</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a class="text-red" href="admissions.html">Apply</a></li>
+</ul>
+<div class="hamburger">
+<i class="fas fa-bars"></i>
+</div>
+</div>
+</nav>
+<div class="page-header" style="background: url('assets/images/training.png') center/cover; position: relative;">
+<div style="position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to top, var(--black), rgba(11,9,10,0.8));"></div>
+<h1 style="position: relative; z-index: 2; text-transform: uppercase;">Academy Ultimate Team</h1>
+</div>
+<!-- Stats Section -->
+<section class="section pt-0">
+<div class="container">
+<div class="text-center scroll-animate">
+<p class="section-desc" style="max-width:600px; margin: 0 auto;">Discover our elite rising stars through their official Ultimate Team ratings and statistics. <strong>Click a card</strong> to see detailed scouting reports.</p>
+</div>
+<div class="filters-container">
+<input class="search-input" id="searchInput" placeholder="Search by name..." type="text"/>
+<button class="filter-btn active" data-filter="all">All</button>
+<button class="filter-btn" data-filter="attackers">Attackers</button>
+<button class="filter-btn" data-filter="midfielders">Midfielders</button>
+<button class="filter-btn" data-filter="defenders">Defenders &amp; GK</button>
+<button class="filter-btn" data-filter="boys">Boys</button>
+<button class="filter-btn" data-filter="girls">Girls</button>
+</div>
+<div class="ea-cards-grid scroll-animate mt-5" id="cards-container">
+<div class="ea-card clickable-card tier-inform" data-bio="A prolific goalscorer with an incredible sense of positioning. Kofi excels at breaking defensive lines." data-dob="12-04-2008" data-foot="Right" data-gender="boys" data-goals="14" data-height="175" data-img="assets/images/child-player-1.png" data-name="Victor Wanyama" data-pos="Striker" data-position-type="attackers" data-weight="65" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">14</div>
+<div class="ea-card-position">ST</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Victor Wanyama" src="assets/images/child-player-1.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Victor Wanyama</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2008</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>R</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>175</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>65</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>M</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>14</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-gold" data-bio="The engine of the midfield. Amadou reads the game perfectly and has an outstanding passing range." data-dob="23-11-2007" data-foot="Left" data-gender="girls" data-goals="6" data-height="182" data-img="assets/images/child-player-2.png" data-name="Faith Adhiambo" data-pos="Central Midfield" data-position-type="midfielders" data-weight="72" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">6</div>
+<div class="ea-card-position">CM</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Faith Adhiambo" src="assets/images/child-player-2.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Faith Adhiambo</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2007</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>L</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>182</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>72</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>F</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>6</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-bronze" data-bio="A rock at the back. Chinedu wins every aerial duel and leads the defense with immense composure." data-dob="05-08-2006" data-foot="Right" data-gender="boys" data-goals="2" data-height="188" data-img="assets/images/child-player-1.png" data-name="Brian Kamau" data-pos="Center-Back" data-position-type="defenders" data-weight="80" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">2</div>
+<div class="ea-card-position">CB</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Brian Kamau" src="assets/images/child-player-1.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Brian Kamau</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2006</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>R</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>188</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>80</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>M</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>2</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-gold" data-bio="Agile, quick, and technically gifted. Amina's close control makes her a nightmare for defenders." data-dob="30-01-2008" data-foot="Right" data-gender="boys" data-goals="8" data-height="165" data-img="assets/images/child-player-3.png" data-name="Kelvin Odhiambo" data-pos="Attacking Midfield" data-position-type="midfielders" data-weight="55" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">8</div>
+<div class="ea-card-position">CAM</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Kelvin Odhiambo" src="assets/images/child-player-3.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Kelvin Odhiambo</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2008</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>R</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>165</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>55</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>M</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>8</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-inform" data-bio="A lightning-fast winger who loves to cut inside and unleash powerful shots with his dominant left foot." data-dob="14-02-2009" data-foot="Left" data-gender="girls" data-goals="10" data-height="170" data-img="assets/images/child-player-2.png" data-name="Ruth Nekesa" data-pos="Left Winger" data-position-type="attackers" data-weight="60" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">10</div>
+<div class="ea-card-position">LW</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Ruth Nekesa" src="assets/images/child-player-2.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Ruth Nekesa</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2009</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>L</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>170</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>60</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>F</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>10</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-inform" data-bio="The academy's leading goalscorer. Jean combines physicality with clinical finishing inside the box." data-dob="21-03-2006" data-foot="Right" data-gender="boys" data-goals="18" data-height="185" data-img="assets/images/child-player-3.png" data-name="David Kiprotich" data-pos="Striker" data-position-type="attackers" data-weight="76" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">18</div>
+<div class="ea-card-position">ST</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="David Kiprotich" src="assets/images/child-player-3.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">David Kiprotich</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2006</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>R</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>185</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>76</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>M</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>18</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-bronze" data-bio="A modern full-back who never stops running. Fatou is solid defensively and contributes heavily in attack." data-dob="18-06-2007" data-foot="Left" data-gender="boys" data-goals="1" data-height="168" data-img="assets/images/child-player-1.png" data-name="Dennis Mutuku" data-pos="Left-Back" data-position-type="defenders" data-weight="58" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">1</div>
+<div class="ea-card-position">LB</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Dennis Mutuku" src="assets/images/child-player-1.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Dennis Mutuku</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2007</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>L</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>168</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>58</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>M</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>1</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-silver" data-bio="The shield in front of the defense. Peter breaks up opposition play and recycles possession brilliantly." data-dob="09-09-2008" data-foot="Right" data-gender="girls" data-goals="5" data-height="178" data-img="assets/images/child-player-2.png" data-name="Grace Njeri" data-pos="Defensive Midfield" data-position-type="midfielders" data-weight="68" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">5</div>
+<div class="ea-card-position">CDM</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Grace Njeri" src="assets/images/child-player-2.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Grace Njeri</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2008</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>R</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>178</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>68</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>F</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>5</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-bronze" data-bio="An acrobatic shot-stopper known for his spectacular saves and incredible reflexes on the goal line." data-dob="01-12-2007" data-foot="Right" data-gender="boys" data-goals="0" data-height="180" data-img="assets/images/child-player-1.png" data-name="Samuel Kipkemboi" data-pos="Goalkeeper" data-position-type="defenders" data-weight="70" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">0</div>
+<div class="ea-card-position">GK</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Samuel Kipkemboi" src="assets/images/child-player-1.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Samuel Kipkemboi</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2007</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>R</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>180</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>70</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>M</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>0</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-silver" data-bio="A two-footed defender capable of playing accurate long balls. Sibusiso reads the game exceptionally well." data-dob="10-10-2006" data-foot="Both" data-gender="boys" data-goals="3" data-height="184" data-img="assets/images/child-player-3.png" data-name="Simon Ndegwa" data-pos="Center-Back" data-position-type="defenders" data-weight="75" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">3</div>
+<div class="ea-card-position">CB</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Simon Ndegwa" src="assets/images/child-player-3.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Simon Ndegwa</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2006</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>B</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>184</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>75</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>M</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>3</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-inform" data-bio="Pacey and unpredictable, she creates constant overloads on the right flank and provides excellent crosses." data-dob="25-05-2008" data-foot="Right" data-gender="girls" data-goals="11" data-height="172" data-img="assets/images/child-player-2.png" data-name="Mary Wanjiku" data-pos="Right Winger" data-position-type="attackers" data-weight="62" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">11</div>
+<div class="ea-card-position">RW</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Mary Wanjiku" src="assets/images/child-player-2.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Mary Wanjiku</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2008</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>R</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>172</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>62</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>F</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>11</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-gold" data-bio="A tireless midfielder with great dribbling ability and vision, capable of turning defense into attack instantly." data-dob="07-07-2009" data-foot="Left" data-gender="boys" data-goals="7" data-height="169" data-img="assets/images/child-player-3.png" data-name="James Mwangi" data-pos="Left Midfield" data-position-type="midfielders" data-weight="59" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">7</div>
+<div class="ea-card-position">LM</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="James Mwangi" src="assets/images/child-player-3.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">James Mwangi</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2009</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>L</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>169</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>59</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>M</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>7</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-silver" data-bio="A dominant box-to-box midfielder with a powerful strike from distance and formidable strength." data-dob="15-01-2006" data-foot="Right" data-gender="boys" data-goals="4" data-height="186" data-img="assets/images/child-player-1.png" data-name="Victor Wanyama" data-pos="Central Midfield" data-position-type="midfielders" data-weight="78" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">4</div>
+<div class="ea-card-position">CM</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Victor Wanyama" src="assets/images/child-player-1.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Victor Wanyama</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2006</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>R</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>186</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>78</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>M</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>4</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-bronze" data-bio="A highly aggressive full-back known for tracking back swiftly and executing perfectly timed tackles." data-dob="30-04-2007" data-foot="Right" data-gender="girls" data-goals="2" data-height="176" data-img="assets/images/child-player-2.png" data-name="Jane Atieno" data-pos="Right-Back" data-position-type="defenders" data-weight="67" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">2</div>
+<div class="ea-card-position">RB</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Jane Atieno" src="assets/images/child-player-2.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Jane Atieno</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2007</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>R</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>176</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>67</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>F</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>2</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ea-card clickable-card tier-gold" data-bio="An intelligent forward who drops deep to link up play and exploit spaces behind the defensive line." data-dob="20-08-2008" data-foot="Left" data-gender="boys" data-goals="9" data-height="177" data-img="assets/images/child-player-1.png" data-name="Brian Kamau" data-pos="Center Forward" data-position-type="attackers" data-weight="66" style="cursor: pointer;">
+<div class="ea-card-inner">
+<div class="ea-card-top">
+<div class="ea-card-stats-quick">
+<div class="ea-card-rating">9</div>
+<div class="ea-card-position">CF</div>
+<img alt="Kenya" class="ea-card-nation" onerror="this.style.display='none'" src="https://flagcdn.com/w40/ke.png"/>
+</div>
+<div class="ea-card-image">
+<img alt="Brian Kamau" src="assets/images/child-player-1.png"/>
+</div>
+</div>
+<div class="ea-card-bottom">
+<h3 class="ea-card-name">Brian Kamau</h3>
+<div class="line-divider"></div>
+<div class="ea-card-details">
+<div class="ea-stat"><strong>2008</strong><span>DOB</span></div>
+<div class="ea-stat"><strong>L</strong><span>FOOT</span></div>
+<div class="ea-stat"><strong>177</strong><span>HGT</span></div>
+<div class="ea-stat"><strong>66</strong><span>WGT</span></div>
+<div class="ea-stat"><strong>M</strong><span>GEN</span></div>
+<div class="ea-stat"><strong>9</strong><span>GLS</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Player Modal Dialog -->
+<div class="player-modal-overlay" id="playerModal">
+<div class="player-modal-content">
+<i class="fas fa-times modal-close" id="closeModal"></i>
+<div class="modal-left">
+<img alt="Player Portrait" id="modalImg" src="assets/images/coach-1.png"/>
+</div>
+<div class="modal-right">
+<h2 id="modalName">Player Name</h2>
+<h3 id="modalPos">Position</h3>
+<div class="line-divider" style="margin: 0; width: 100%;"></div>
+<div class="modal-full-details">
+<div class="modal-detail-item">
+<span>Overall Goals Rating</span>
+<strong id="modalGoals" style="color:var(--primary);">14</strong>
+</div>
+<div class="modal-detail-item">
+<span>Date of Birth</span>
+<strong id="modalDob">12-04-2008</strong>
+</div>
+<div class="modal-detail-item">
+<span>Preferred Foot</span>
+<strong id="modalFoot">Right</strong>
+</div>
+<div class="modal-detail-item">
+<span>Physical Build</span>
+<strong><span id="modalHeight">175</span>cm / <span id="modalWeight">65</span>kg</strong>
+</div>
+</div>
+<div class="modal-bio">
+<strong>Scouting Report:</strong>
+<p class="mt-2" id="modalBio" style="margin-top:10px;">Player bio generated here.</p>
+</div>
+<div class="modal-grid-v2">
+<div class="modal-radar-container">
+<canvas height="250" id="scoutRadarChart" width="250"></canvas>
+</div>
+<div class="modal-highlights">
+<h4>Recent Highlights</h4>
+<div class="video-thumb"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<footer class="footer">
+<div class="container text-center">
+<img alt="Soccer Africa Logo" class="footer-logo" src="assets/images/logo.png"/>
+<p>© 2026 Soccer Africa Football Academy. All Rights Reserved.<br/>
+            Powered by <a class="text-red" href="https://get--connected.com" target="_blank">get--connected.com</a></p>
+</div>
+</footer>
+<script src="js/script.js"></script>
+<script>
+        // Modal & Chart Logic
+        const modal = document.getElementById('playerModal');
+        const closeModal = document.getElementById('closeModal');
+        const cards = document.querySelectorAll('.clickable-card');
+
+        const mName = document.getElementById('modalName');
+        const mPos = document.getElementById('modalPos');
+        const mDob = document.getElementById('modalDob');
+        const mFoot = document.getElementById('modalFoot');
+        const mHeight = document.getElementById('modalHeight');
+        const mWeight = document.getElementById('modalWeight');
+        const mGoals = document.getElementById('modalGoals');
+        const mBio = document.getElementById('modalBio');
+        const mImg = document.getElementById('modalImg');
+        
+        let radarChart = null;
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                mName.textContent = card.dataset.name;
+                
+                // Get pos from child since it's cleaner in our new layout
+                const p = card.querySelector('.ea-card-position');
+                mPos.textContent = p ? p.textContent : "";
+                
+                // Read from stats
+                const statBlocks = card.querySelectorAll('.ea-stat');
+                statBlocks.forEach(sb => {
+                    const txt = sb.textContent;
+                    if(txt.includes('DOB')) mDob.textContent = sb.querySelector('strong').textContent;
+                    if(txt.includes('FOOT')) mFoot.textContent = sb.querySelector('strong').textContent;
+                    if(txt.includes('HGT')) mHeight.textContent = sb.querySelector('strong').textContent;
+                    if(txt.includes('WGT')) mWeight.textContent = sb.querySelector('strong').textContent;
+                    if(txt.includes('GLS')) mGoals.textContent = sb.querySelector('strong').textContent;
+                });
+                
+                mImg.src = card.dataset.img;
+                
+                // Base dynamic stats loosely on goals for demo purposes
+                const gls = parseInt(mGoals.textContent);
+                const pac = Math.min(99, 60 + gls * 2 + Math.floor(Math.random() * 10));
+                const sho = Math.min(99, 50 + gls * 3);
+                const pas = Math.min(99, 65 + Math.floor(Math.random() * 20));
+                const dri = Math.min(99, 60 + gls + Math.floor(Math.random() * 15));
+                const def = Math.min(99, 85 - gls * 2);
+                const phy = Math.min(99, 70 + Math.floor(Math.random() * 15));
+
+                initChart([pac, sho, pas, dri, def, phy]);
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            if(radarChart) radarChart.destroy();
+        });
+
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                if(radarChart) radarChart.destroy();
+            }
+        });
+        
+        function initChart(dataVals) {
+            const ctx = document.getElementById('scoutRadarChart').getContext('2d');
+            if(radarChart) radarChart.destroy();
+            
+            Chart.defaults.color = 'rgba(255, 255, 255, 0.7)';
+            radarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['PAC', 'SHO', 'PAS', 'DRI', 'DEF', 'PHY'],
+                    datasets: [{
+                        label: 'Stats',
+                        data: dataVals,
+                        backgroundColor: 'rgba(212, 175, 55, 0.4)',
+                        borderColor: '#d4af37',
+                        pointBackgroundColor: '#d4af37',
+                        pointHoverBackgroundColor: '#fff',
+                        pointBorderColor: '#fff',
+                        borderWidth: 2,
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            pointLabels: { color: '#ffd700', font: { size: 12, weight: 'bold' } },
+                            ticks: { display: false, min: 0, max: 100 }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+        
+        // Filter & Search Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const searchInput = document.getElementById('searchInput');
+        
+        function applyFilters() {
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            const searchTerms = searchInput.value.toLowerCase();
+            
+            cards.forEach(card => {
+                const nameMatch = card.dataset.name.toLowerCase().includes(searchTerms);
+                const posMatch = activeFilter === 'all' || 
+                                 (activeFilter === 'attackers' && card.dataset.positionType === 'attackers') ||
+                                 (activeFilter === 'midfielders' && card.dataset.positionType === 'midfielders') ||
+                                 (activeFilter === 'defenders' && card.dataset.positionType === 'defenders') ||
+                                 (activeFilter === 'boys' && card.dataset.gender === 'boys') ||
+                                 (activeFilter === 'girls' && card.dataset.gender === 'girls'); // fixed condition
+                                 
+                if(nameMatch && posMatch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                applyFilters();
+            });
+        });
+        
+        searchInput.addEventListener('input', applyFilters);
+
+    </script>
+</body>
+</html>
