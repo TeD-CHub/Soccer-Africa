@@ -38,28 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Active Link Highlighting ---
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-links a');
 
-    window.addEventListener('scroll', () => {
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href').includes(current) && current !== '') {
-                item.classList.add('active');
-            }
-        });
-    });
 
     // --- Scroll Animations (Intersection Observer) ---
     const scrollElements = document.querySelectorAll('.scroll-animate');
@@ -89,28 +68,5 @@ document.addEventListener('DOMContentLoaded', () => {
         handleScrollAnimation();
     });
 
-    // --- Form Submission Prevention (for demo) ---
-    const form = document.getElementById('academy-form');
-    if(form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = form.querySelector('button');
-            const originalText = btn.innerText;
-            
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                btn.innerHTML = '<i class="fas fa-check"></i> Application Sent!';
-                btn.style.backgroundColor = '#28a745'; // Success green
-                form.reset();
-                
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.style.backgroundColor = '';
-                    btn.disabled = false;
-                }, 3000);
-            }, 1500);
-        });
-    }
+
 });

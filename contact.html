@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Soccer Africa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="page-body">
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Soccer Africa Logo">
+                <span>SOCCER AFRICA</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    <div class="page-header">
+       <h1>Get In Touch</h1>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="section contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info scroll-animate">
+                    <h3>Contact Information</h3>
+                    <p>Have questions about our programs or admissions? Reach out to our team.</p>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <span>123 Elite Turf, Nairobi, Kenya</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <span>+254 700 123 456</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <span>admissions@soccerafrica.com</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="contact-form scroll-animate animate-right">
+                    <!-- Functional Formspree Integration -->
+                    <form id="academy-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_ID" method="POST">
+                        <div class="input-group">
+                            <input type="text" name="name" id="name" required placeholder="Full Name">
+                        </div>
+                        <div class="input-group">
+                            <input type="email" name="email" id="email" required placeholder="Email Address">
+                        </div>
+                        <div class="input-group">
+                            <select name="program" id="program" required>
+                                <option value="" disabled selected>Select Program of Interest</option>
+                                <option value="foundation">Foundation (U8 - U12)</option>
+                                <option value="development">Development (U13 - U16)</option>
+                                <option value="elite">Elite Squad (U17 - U20)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <textarea name="message" id="message" rows="5" placeholder="Your Message or Player Background"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <img src="assets/images/logo.png" alt="Soccer Africa Logo" class="footer-logo">
+            <p>&copy; 2026 Soccer Africa Football Academy. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>

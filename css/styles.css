@@ -726,3 +726,75 @@ img {
         z-index: 1001; /* Above mobile menu */
     }
 }
+
+/* =========================================
+   New Multi-Page Extras
+   ========================================= */
+.page-body {
+    padding-top: 80px; /* Offset for fixed navbar */
+}
+.page-header {
+    background-color: var(--black-light);
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 2px solid var(--primary);
+    margin-bottom: 50px;
+}
+.mt-5 { margin-top: 50px; }
+.p-5 { padding: 50px; }
+.br-8 { border-radius: 8px; }
+
+/* Masonry Grid */
+.masonry-grid {
+    column-count: 3;
+    column-gap: 20px;
+}
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 20px;
+}
+.masonry-item img {
+    border-radius: 8px;
+    width: 100%;
+    transition: transform 0.3s;
+}
+.masonry-item img:hover {
+    transform: scale(1.03);
+}
+
+/* Ticker */
+.ticker-wrapper {
+    overflow: hidden;
+    background-color: var(--primary);
+    padding: 15px 0;
+    white-space: nowrap;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+.ticker-content {
+    display: inline-block;
+    animation: ticker 40s linear infinite;
+}
+.ticker-content:hover {
+    animation-play-state: paused;
+}
+.ticker-item {
+    display: inline-block;
+    color: var(--text-white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-right: 50px;
+}
+.ticker-item i { margin-right: 8px; }
+@keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@media screen and (max-width: 992px) {
+    .masonry-grid { column-count: 2; }
+}
+
+@media screen and (max-width: 768px) {
+    .masonry-grid { column-count: 1; }
+}
