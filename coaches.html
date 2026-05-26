@@ -83,8 +83,18 @@
                             .img-container {
                                 overflow: hidden;
                             }
+                            
+                            /* Typing Cursor */
+                            .typing-cursor::after {
+                                content: '|';
+                                animation: blink 1s step-end infinite;
+                            }
+                            @keyframes blink {
+                                from, to { opacity: 1; }
+                                50% { opacity: 0; }
+                            }
                         </style>
-                        <h3 style="font-size: 2rem; text-align: center;">Arnold Maina Omondi</h3>
+                        <h3 id="coach-name" class="typing-cursor" style="font-size: 2rem; text-align: center; min-height: 38.4px;"></h3>
                         <span class="text-white" style="display: block; text-align: center; margin-bottom: 30px; font-weight: bold; font-size: 1.1rem;">Founder & Lead Coach – Soccer Africa International Football Academy</span>
                         
                         <p>I am Arnold Maina Omondi, popularly known as Coach Mich, a passionate football coach, youth mentor, and sports development practitioner dedicated to nurturing young talent and transforming lives through football. I am the Founder and CEO of Soccer Africa International Football Academy, an institution focused on developing technically gifted, disciplined, and socially responsible players for the future.</p>
@@ -131,6 +141,29 @@
                                     btnText.innerHTML = "Read More";
                                 }
                             }
+
+                            // Typing effect
+                            document.addEventListener('DOMContentLoaded', () => {
+                                const nameText = "Arnold Maina Omondi";
+                                const nameElement = document.getElementById("coach-name");
+                                let i = 0;
+                                
+                                function typeWriter() {
+                                    if (i < nameText.length) {
+                                        nameElement.innerHTML += nameText.charAt(i);
+                                        i++;
+                                        setTimeout(typeWriter, 80);
+                                    } else {
+                                        // Stop blinking after typing finishes
+                                        setTimeout(() => {
+                                            nameElement.classList.remove('typing-cursor');
+                                        }, 2000);
+                                    }
+                                }
+                                
+                                // Start typing effect shortly after load
+                                setTimeout(typeWriter, 400);
+                            });
                         </script>
                     </div>
                 </div>
