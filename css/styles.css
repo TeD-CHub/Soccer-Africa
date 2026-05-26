@@ -220,8 +220,10 @@ img {
 }
 
 .logo img {
-    height: 45px;
+    height: 65px;
     width: auto;
+    border: none !important;
+    outline: none !important;
 }
 
 .logo span {
@@ -638,8 +640,10 @@ img {
 }
 
 .footer-logo {
-    height: 50px;
+    height: 85px;
     margin: 0 auto 15px auto;
+    border: none !important;
+    outline: none !important;
     filter: grayscale(0%) opacity(1);
     transition: all var(--transition);
 }
