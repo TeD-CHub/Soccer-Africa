@@ -73,12 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeIcon = document.getElementById('theme-icon');
     
     if (themeToggle && themeIcon) {
-        // Check local storage for theme
+        // Check local storage for theme, default to light
         const currentTheme = localStorage.getItem('theme');
-        if (currentTheme === 'light') {
+        if (currentTheme !== 'dark') {
             document.body.classList.add('light-mode');
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
+        } else {
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
         }
 
         themeToggle.addEventListener('click', () => {
