@@ -44,55 +44,90 @@
             <div class="coach-grid">
                 <!-- Coach 1 -->
                 <div class="coach-card scroll-animate" style="max-width: 900px; margin: 0 auto;">
-                    <img src="assets/images/coach-mich.jpeg" alt="Arnold Maina Omondi" class="coach-img" style="height: auto; max-height: 500px;">
+                    <div class="img-container">
+                        <img src="assets/images/coach-mich.jpeg" alt="Arnold Maina Omondi" class="coach-img" style="height: auto; max-height: 500px; display: block; width: 100%;">
+                    </div>
                     <div class="coach-info coach-bio" style="text-align: left; padding: 30px;">
                         <style>
                             .coach-bio p { margin-bottom: 20px; line-height: 1.8; font-size: 1.05rem; }
                             .coach-bio ul { margin-bottom: 25px; line-height: 1.8; font-size: 1.05rem; }
                             .coach-bio li { margin-bottom: 8px; }
+                            
+                            /* Smooth Expand/Collapse */
+                            .more-info-wrapper {
+                                display: grid;
+                                grid-template-rows: 0fr;
+                                transition: grid-template-rows 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+                            }
+                            .more-info-wrapper.expanded {
+                                grid-template-rows: 1fr;
+                            }
+                            .more-info-content {
+                                overflow: hidden;
+                            }
+                            
+                            /* Image and Card interactions */
+                            .coach-card {
+                                transition: transform 0.4s ease, box-shadow 0.4s ease;
+                            }
+                            .coach-card:hover {
+                                transform: translateY(-8px);
+                                box-shadow: 0 20px 40px rgba(217, 4, 41, 0.25);
+                            }
+                            .coach-img {
+                                transition: transform 0.6s ease;
+                            }
+                            .coach-card:hover .coach-img {
+                                transform: scale(1.05);
+                            }
+                            .img-container {
+                                overflow: hidden;
+                            }
                         </style>
                         <h3 style="font-size: 2rem; text-align: center;">Arnold Maina Omondi</h3>
                         <span class="text-white" style="display: block; text-align: center; margin-bottom: 30px; font-weight: bold; font-size: 1.1rem;">Founder & Lead Coach – Soccer Africa International Football Academy</span>
                         
                         <p>I am Arnold Maina Omondi, popularly known as Coach Mich, a passionate football coach, youth mentor, and sports development practitioner dedicated to nurturing young talent and transforming lives through football. I am the Founder and CEO of Soccer Africa International Football Academy, an institution focused on developing technically gifted, disciplined, and socially responsible players for the future.</p>
                         
-                        <div id="more-coach-info" style="display: none;">
-                            <p>Over the years, I have worked with different teams and football programs across Kenya, earning recognition for leadership, tactical understanding, and commitment to youth empowerment through sports. I currently serve as the Head Coach of the University of Nairobi Football Team and have also worked as Assistant Coach at Leads United, where I contributed to winning major tournaments including the Betika Nairobi Region Tournament and the 82 Sports Tournament.</p>
-                            
-                            <p>I am a certified football coach and sports management practitioner with qualifications and certifications that include:</p>
-                            
-                            <ul style="list-style: disc; margin-left: 2rem; color: var(--text-gray);">
-                                <li>FKF CAF D Coaching Certificate</li>
-                                <li>Sports Management Certification</li>
-                                <li>Concussion Grassroots Football Certificate – England Football</li>
-                                <li>EE Playmaker by England Football</li>
-                                <li>The Greater Game Course – The FA</li>
-                                <li>England Football Learning PE CPD Online Certificate</li>
-                                <li>Play Phase by The FA</li>
-                                <li>Talent Identification in Football by The FA</li>
-                            </ul>
-                            
-                            <p>My coaching philosophy emphasizes discipline, teamwork, technical development, mental strength, and creating opportunities for young players to grow both on and off the pitch.</p>
-                            
-                            <p>Through Soccer Africa International Football Academy, my vision is to build a strong football culture that not only develops elite players but also promotes education, health, character, and community development among young people.</p>
-                            
-                            <p>I remain committed to inspiring and mentoring the next generation of footballers by combining professional coaching, leadership, mentorship, and a deep passion for the beautiful game.</p>
+                        <div id="more-coach-info" class="more-info-wrapper">
+                            <div class="more-info-content">
+                                <p>Over the years, I have worked with different teams and football programs across Kenya, earning recognition for leadership, tactical understanding, and commitment to youth empowerment through sports. I currently serve as the Head Coach of the University of Nairobi Football Team and have also worked as Assistant Coach at Leads United, where I contributed to winning major tournaments including the Betika Nairobi Region Tournament and the 82 Sports Tournament.</p>
+                                
+                                <p>I am a certified football coach and sports management practitioner with qualifications and certifications that include:</p>
+                                
+                                <ul style="list-style: disc; margin-left: 2rem; color: var(--text-gray);">
+                                    <li>FKF CAF D Coaching Certificate</li>
+                                    <li>Sports Management Certification</li>
+                                    <li>Concussion Grassroots Football Certificate – England Football</li>
+                                    <li>EE Playmaker by England Football</li>
+                                    <li>The Greater Game Course – The FA</li>
+                                    <li>England Football Learning PE CPD Online Certificate</li>
+                                    <li>Play Phase by The FA</li>
+                                    <li>Talent Identification in Football by The FA</li>
+                                </ul>
+                                
+                                <p>My coaching philosophy emphasizes discipline, teamwork, technical development, mental strength, and creating opportunities for young players to grow both on and off the pitch.</p>
+                                
+                                <p>Through Soccer Africa International Football Academy, my vision is to build a strong football culture that not only develops elite players but also promotes education, health, character, and community development among young people.</p>
+                                
+                                <p>I remain committed to inspiring and mentoring the next generation of footballers by combining professional coaching, leadership, mentorship, and a deep passion for the beautiful game.</p>
+                            </div>
                         </div>
                         
                         <div style="text-align: center; margin-top: 20px;">
-                            <button id="read-more-btn" class="btn btn-outline" style="padding: 10px 24px;" onclick="toggleReadMore()">Read More</button>
+                            <button id="read-more-btn" class="btn btn-primary" style="padding: 10px 24px; min-width: 150px;" onclick="toggleReadMore()">Read More</button>
                         </div>
                         
                         <script>
                             function toggleReadMore() {
-                                var moreInfo = document.getElementById("more-coach-info");
+                                var wrapper = document.getElementById("more-coach-info");
                                 var btnText = document.getElementById("read-more-btn");
                                 
-                                if (moreInfo.style.display === "none") {
-                                    moreInfo.style.display = "block";
+                                wrapper.classList.toggle("expanded");
+                                
+                                if (wrapper.classList.contains("expanded")) {
                                     btnText.innerHTML = "Read Less";
                                 } else {
-                                    moreInfo.style.display = "none";
                                     btnText.innerHTML = "Read More";
                                 }
                             }
