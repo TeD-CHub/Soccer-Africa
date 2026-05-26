@@ -24,6 +24,9 @@
                 <li><a href="gallery.html" class="active">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="admissions.html" class="text-red">Apply</a></li>
+                <li style="margin-left: 15px; cursor: pointer; color: var(--text-white); font-size: 1.2rem; display: flex; align-items: center;" id="theme-toggle" title="Toggle Light/Dark Mode">
+                    <i class="fas fa-moon" id="theme-icon"></i>
+                </li>
             </ul>
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
@@ -37,19 +40,61 @@
     <!-- Gallery Section -->
     <section class="section">
         <div class="container">
-            <div class="masonry-grid">
-                <div class="masonry-item scroll-animate"><img src="assets/images/hero-bg.png" alt="Gallery"></div>
-                <div class="masonry-item scroll-animate"><img src="assets/images/training.png" alt="Gallery"></div>
-                <div class="masonry-item scroll-animate"><img src="assets/images/school-partnership.png" alt="Gallery"></div>
-                <div class="masonry-item scroll-animate"><img src="assets/images/hero-bg.png" alt="Gallery"></div>
-                <div class="masonry-item scroll-animate"><img src="assets/images/training.png" alt="Gallery"></div>
-                <div class="masonry-item scroll-animate"><img src="assets/images/school-partnership.png" alt="Gallery"></div>
+            <style>
+                .masonry-item { transition: opacity 0.3s ease, transform 0.3s ease; }
+            </style>
+            <div class="filters-container" style="margin-bottom: 40px; text-align: center;">
+                <button class="filter-btn active" data-filter="all">All Photos</button>
+                <button class="filter-btn" data-filter="training">Training</button>
+                <button class="filter-btn" data-filter="matches">Matches</button>
+                <button class="filter-btn" data-filter="events">Events</button>
             </div>
+            <div class="masonry-grid" id="gallery-grid">
+                <div class="masonry-item scroll-animate" data-category="matches"><img src="assets/images/hero-bg.png" alt="Gallery Match" loading="lazy"></div>
+                <div class="masonry-item scroll-animate" data-category="training"><img src="assets/images/training.png" alt="Gallery Training" loading="lazy"></div>
+                <div class="masonry-item scroll-animate" data-category="events"><img src="assets/images/school-partnership.png" alt="Gallery Event" loading="lazy"></div>
+                <div class="masonry-item scroll-animate" data-category="matches"><img src="assets/images/hero-bg.png" alt="Gallery Match 2" loading="lazy"></div>
+                <div class="masonry-item scroll-animate" data-category="training"><img src="assets/images/training.png" alt="Gallery Training 2" loading="lazy"></div>
+                <div class="masonry-item scroll-animate" data-category="events"><img src="assets/images/school-partnership.png" alt="Gallery Event 2" loading="lazy"></div>
+            </div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const filterBtns = document.querySelectorAll('.filters-container .filter-btn');
+                    const items = document.querySelectorAll('.masonry-item');
+                    
+                    filterBtns.forEach(btn => {
+                        btn.addEventListener('click', () => {
+                            filterBtns.forEach(b => b.classList.remove('active'));
+                            btn.classList.add('active');
+                            
+                            const filter = btn.dataset.filter;
+                            items.forEach(item => {
+                                if(filter === 'all' || item.dataset.category === filter) {
+                                    item.style.display = 'block';
+                                    setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 50);
+                                } else {
+                                    item.style.opacity = '0';
+                                    item.style.transform = 'scale(0.8)';
+                                    setTimeout(() => { item.style.display = 'none'; }, 300);
+                                }
+                            });
+                        });
+                    });
+                });
+            </script>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container text-center">
+            <div class="newsletter-section" style="margin-bottom: 30px;">
+                <h3 style="margin-bottom: 15px;">Join Our Newsletter</h3>
+                <form id="newsletter-form" class="newsletter-form" style="display: flex; justify-content: center; gap: 10px; max-width: 400px; margin: 0 auto;">
+                    <input type="email" placeholder="Enter your email" required style="padding: 10px 15px; border-radius: 20px; border: 1px solid var(--black-border); flex: 1; outline: none; background: transparent; color: var(--text-white);">
+                    <button type="submit" class="btn btn-primary" style="padding: 10px 20px; border-radius: 20px; border: none; cursor: pointer;">Subscribe</button>
+                </form>
+            </div>
             <img src="assets/images/logo.jpeg" alt="Soccer Africa Logo" class="footer-logo">
             <p>&copy; 2026 Soccer Africa Football Academy. All Rights Reserved.<br>
             Powered by <a href="https://get--connected.com" target="_blank" class="connected-btn">ConnecTED</a></p>
