@@ -1429,3 +1429,25 @@ img {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* ConnecTED Footer Button */
+.connected-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #EF233C, #D90429);
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-weight: 800;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    margin-left: 8px;
+    box-shadow: 0 4px 10px rgba(217, 4, 41, 0.4);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.connected-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(217, 4, 41, 0.6);
+    color: #fff;
+}
