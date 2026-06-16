@@ -242,6 +242,67 @@
                     </div>
                 </div>
 
+                <!-- Coach 3 -->
+                <div class="coach-card scroll-animate" style="max-width: 900px; margin: 40px auto 0;">
+                    <!-- Image intentionally left blank for now -->
+                    <div class="img-container" style="height: 0px;">
+                    </div>
+                    <div class="coach-info coach-bio" style="text-align: left; padding: 30px;">
+                        <h3 id="coach-name-bartholomew" class="typing-cursor" style="font-size: 2rem; text-align: center; min-height: 38.4px;"></h3>
+                        <span class="text-white" style="display: block; text-align: center; margin-bottom: 30px; font-weight: bold; font-size: 1.1rem;">Coach – Soccer Africa Academy</span>
+                        
+                        <p>I am Bartholomew Lisiye (Coach Kante). I'm 22 years old, a veterinary medicine and surgery student, and a football player. I've been playing football for almost 15 years till now. I am now a player at UoN Olympic that plays in the Nairobi Regional League.</p>
+                        
+                        <div id="more-coach-info-bartholomew" class="more-info-wrapper">
+                            <div class="more-info-content">
+                                <p>I have played at the national and East Africa level for UoN and won the championship and second runners-up consecutively. I have also featured for Vapor Ministries, which plays in the Division 2 Kenyan league.</p>
+                                
+                                <p>I have been coaching since 2025, taking up under-17 and under-13 players for various teams. I aspire to inspire young players as the older ones have inspired me. I also endeavour to play on greater stages to show the younger players that it is possible.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button id="read-more-btn-bartholomew" class="btn btn-primary" style="padding: 10px 24px; min-width: 150px;" onclick="toggleReadMoreBartholomew()">Read More</button>
+                        </div>
+                        
+                        <script>
+                            function toggleReadMoreBartholomew() {
+                                var wrapper = document.getElementById("more-coach-info-bartholomew");
+                                var btnText = document.getElementById("read-more-btn-bartholomew");
+                                
+                                wrapper.classList.toggle("expanded");
+                                
+                                if (wrapper.classList.contains("expanded")) {
+                                    btnText.innerHTML = "Read Less";
+                                } else {
+                                    btnText.innerHTML = "Read More";
+                                }
+                            }
+
+                            // Typing effect for Bartholomew
+                            document.addEventListener('DOMContentLoaded', () => {
+                                const nameTextBartholomew = "Bartholomew Lisiye (Coach Kante)";
+                                const nameElementBartholomew = document.getElementById("coach-name-bartholomew");
+                                let k = 0;
+                                
+                                function typeWriterBartholomew() {
+                                    if (k < nameTextBartholomew.length) {
+                                        nameElementBartholomew.innerHTML += nameTextBartholomew.charAt(k);
+                                        k++;
+                                        setTimeout(typeWriterBartholomew, 80);
+                                    } else {
+                                        setTimeout(() => {
+                                            nameElementBartholomew.classList.remove('typing-cursor');
+                                        }, 2000);
+                                    }
+                                }
+                                
+                                setTimeout(typeWriterBartholomew, 400);
+                            });
+                        </script>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
