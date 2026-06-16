@@ -171,6 +171,77 @@
                     </div>
                 </div>
 
+                <!-- Coach 2 -->
+                <div class="coach-card scroll-animate" style="max-width: 900px; margin: 40px auto 0;">
+                    <div class="img-container">
+                        <img src="assets/images/coach-nashon.png" alt="Nashon Alembi" class="coach-img" style="height: auto; max-height: 500px; display: block; width: 100%; object-fit: cover; object-position: top;">
+                    </div>
+                    <div class="coach-info coach-bio" style="text-align: left; padding: 30px;">
+                        <h3 id="coach-name-nashon" class="typing-cursor" style="font-size: 2rem; text-align: center; min-height: 38.4px;"></h3>
+                        <span class="text-white" style="display: block; text-align: center; margin-bottom: 30px; font-weight: bold; font-size: 1.1rem;">Coach – Soccer Africa Academy</span>
+                        
+                        <p><strong>D.O.B:</strong> 13 June 1995<br>
+                        <strong>Position:</strong> Center Back<br>
+                        <strong>Playing Style:</strong> Leader / Stopper Type Defender<br>
+                        <strong>Current Club:</strong> KCB</p>
+                        
+                        <div id="more-coach-info-nashon" class="more-info-wrapper">
+                            <div class="more-info-content">
+                                <h4 style="color: var(--primary-color); margin-bottom: 10px; font-size: 1.2rem;">Career Highlights</h4>
+                                <ul style="list-style: disc; margin-left: 2rem; color: var(--text-gray);">
+                                    <li>Captain KCB Football Club guiding the squad to various FKF Premier League and Cup campaigns.</li>
+                                    <li>Runners up best defender 2020-2021 FKF Premier League.</li>
+                                </ul>
+                                
+                                <h4 style="color: var(--primary-color); margin-top: 20px; margin-bottom: 10px; font-size: 1.2rem;">National Representation</h4>
+                                <ul style="list-style: disc; margin-left: 2rem; color: var(--text-gray);">
+                                    <li>Received call ups and match appearance for the Kenyan National Team both friendlies and AFCON qualifiers.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button id="read-more-btn-nashon" class="btn btn-primary" style="padding: 10px 24px; min-width: 150px;" onclick="toggleReadMoreNashon()">Read More</button>
+                        </div>
+                        
+                        <script>
+                            function toggleReadMoreNashon() {
+                                var wrapper = document.getElementById("more-coach-info-nashon");
+                                var btnText = document.getElementById("read-more-btn-nashon");
+                                
+                                wrapper.classList.toggle("expanded");
+                                
+                                if (wrapper.classList.contains("expanded")) {
+                                    btnText.innerHTML = "Read Less";
+                                } else {
+                                    btnText.innerHTML = "Read More";
+                                }
+                            }
+
+                            // Typing effect for Nashon
+                            document.addEventListener('DOMContentLoaded', () => {
+                                const nameTextNashon = "Nashon Alembi";
+                                const nameElementNashon = document.getElementById("coach-name-nashon");
+                                let j = 0;
+                                
+                                function typeWriterNashon() {
+                                    if (j < nameTextNashon.length) {
+                                        nameElementNashon.innerHTML += nameTextNashon.charAt(j);
+                                        j++;
+                                        setTimeout(typeWriterNashon, 80);
+                                    } else {
+                                        setTimeout(() => {
+                                            nameElementNashon.classList.remove('typing-cursor');
+                                        }, 2000);
+                                    }
+                                }
+                                
+                                setTimeout(typeWriterNashon, 400);
+                            });
+                        </script>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
