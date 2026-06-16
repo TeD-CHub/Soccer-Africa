@@ -303,6 +303,65 @@
                     </div>
                 </div>
 
+                <!-- Coach 4 -->
+                <div class="coach-card scroll-animate" style="max-width: 900px; margin: 40px auto 0;">
+                    <!-- Image intentionally left blank for now -->
+                    <div class="img-container" style="height: 0px;">
+                    </div>
+                    <div class="coach-info coach-bio" style="text-align: left; padding: 30px;">
+                        <h3 id="coach-name-amolo" class="typing-cursor" style="font-size: 2rem; text-align: center; min-height: 38.4px;"></h3>
+                        <span class="text-white" style="display: block; text-align: center; margin-bottom: 30px; font-weight: bold; font-size: 1.1rem;">Youth Football Coach – Soccer Africa Academy</span>
+                        
+                        <p>My name is Amolo Vincent, and I am a Youth Football Coach at Soccer Africa Academy with three years of coaching experience and over a decade of competitive playing experience as a goalkeeper. Throughout my playing career, I represented Greenpark FC, FC Premier, and Bondo United, and I helped Greenpark FC win a league title.</p>
+                        
+                        <div id="more-coach-info-amolo" class="more-info-wrapper">
+                            <div class="more-info-content">
+                                <p>I specialise in goalkeeper training and focus on identifying, developing, and nurturing young talent from an early age. Through structured coaching and mentorship, I help players build their technical skills, confidence, discipline, and a lifelong passion for the game.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button id="read-more-btn-amolo" class="btn btn-primary" style="padding: 10px 24px; min-width: 150px;" onclick="toggleReadMoreAmolo()">Read More</button>
+                        </div>
+                        
+                        <script>
+                            function toggleReadMoreAmolo() {
+                                var wrapper = document.getElementById("more-coach-info-amolo");
+                                var btnText = document.getElementById("read-more-btn-amolo");
+                                
+                                wrapper.classList.toggle("expanded");
+                                
+                                if (wrapper.classList.contains("expanded")) {
+                                    btnText.innerHTML = "Read Less";
+                                } else {
+                                    btnText.innerHTML = "Read More";
+                                }
+                            }
+
+                            // Typing effect for Amolo
+                            document.addEventListener('DOMContentLoaded', () => {
+                                const nameTextAmolo = "Amolo Vincent";
+                                const nameElementAmolo = document.getElementById("coach-name-amolo");
+                                let m = 0;
+                                
+                                function typeWriterAmolo() {
+                                    if (m < nameTextAmolo.length) {
+                                        nameElementAmolo.innerHTML += nameTextAmolo.charAt(m);
+                                        m++;
+                                        setTimeout(typeWriterAmolo, 80);
+                                    } else {
+                                        setTimeout(() => {
+                                            nameElementAmolo.classList.remove('typing-cursor');
+                                        }, 2000);
+                                    }
+                                }
+                                
+                                setTimeout(typeWriterAmolo, 400);
+                            });
+                        </script>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
