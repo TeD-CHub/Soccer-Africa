@@ -362,6 +362,65 @@
                     </div>
                 </div>
 
+                <!-- Coach 5 -->
+                <div class="coach-card scroll-animate" style="max-width: 900px; margin: 40px auto 0;">
+                    <!-- Image intentionally left blank for now -->
+                    <div class="img-container" style="height: 0px;">
+                    </div>
+                    <div class="coach-info coach-bio" style="text-align: left; padding: 30px;">
+                        <h3 id="coach-name-david" class="typing-cursor" style="font-size: 2rem; text-align: center; min-height: 38.4px;"></h3>
+                        <span class="text-white" style="display: block; text-align: center; margin-bottom: 30px; font-weight: bold; font-size: 1.1rem;">Coach – Soccer Africa Academy</span>
+                        
+                        <p>I am Coach David, commonly known as Yanke. I'm a Range Management graduate and AI data specialist with experience in image, video, and text annotation. I enjoy exploring emerging technologies, especially AI and innovative solutions that can address environmental and sustainability challenges.</p>
+                        
+                        <div id="more-coach-info-david" class="more-info-wrapper">
+                            <div class="more-info-content">
+                                <p>In my free time, I like learning new digital skills, keeping up with technological trends, and expanding my knowledge across different fields. I am an artist and also a sports enthusiast, particularly soccer.</p>
+                            </div>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 20px;">
+                            <button id="read-more-btn-david" class="btn btn-primary" style="padding: 10px 24px; min-width: 150px;" onclick="toggleReadMoreDavid()">Read More</button>
+                        </div>
+                        
+                        <script>
+                            function toggleReadMoreDavid() {
+                                var wrapper = document.getElementById("more-coach-info-david");
+                                var btnText = document.getElementById("read-more-btn-david");
+                                
+                                wrapper.classList.toggle("expanded");
+                                
+                                if (wrapper.classList.contains("expanded")) {
+                                    btnText.innerHTML = "Read Less";
+                                } else {
+                                    btnText.innerHTML = "Read More";
+                                }
+                            }
+
+                            // Typing effect for David
+                            document.addEventListener('DOMContentLoaded', () => {
+                                const nameTextDavid = "Coach David (Yanke)";
+                                const nameElementDavid = document.getElementById("coach-name-david");
+                                let d = 0;
+                                
+                                function typeWriterDavid() {
+                                    if (d < nameTextDavid.length) {
+                                        nameElementDavid.innerHTML += nameTextDavid.charAt(d);
+                                        d++;
+                                        setTimeout(typeWriterDavid, 80);
+                                    } else {
+                                        setTimeout(() => {
+                                            nameElementDavid.classList.remove('typing-cursor');
+                                        }, 2000);
+                                    }
+                                }
+                                
+                                setTimeout(typeWriterDavid, 400);
+                            });
+                        </script>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
