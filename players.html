@@ -418,7 +418,8 @@
             const searchInput = document.getElementById('searchInput');
 
             function applyFilters() {
-                const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+                const activeBtn = document.querySelector('.filter-btn.active');
+                const activeFilter = activeBtn ? activeBtn.getAttribute('data-filter') : 'all';
                 const searchTerms = searchInput.value.toLowerCase();
                 
                 // Only filter cards inside the ACTIVE grid for performance!
@@ -428,14 +429,18 @@
                 const cards = activeGrid.querySelectorAll('.clickable-card');
                 
                 cards.forEach(card => {
-                    const nameMatch = card.dataset.name.toLowerCase().includes(searchTerms);
+                    const name = card.getAttribute('data-name') || '';
+                    const nameMatch = name.toLowerCase().includes(searchTerms);
+                    const posType = card.getAttribute('data-position-type');
+                    const gender = card.getAttribute('data-gender');
+                    
                     const posMatch = activeFilter === 'all' || 
-                                     (activeFilter === 'attackers' && card.dataset.positionType === 'attackers') ||
-                                     (activeFilter === 'midfielders' && card.dataset.positionType === 'midfielders') ||
-                                     (activeFilter === 'defenders' && card.dataset.positionType === 'defenders') ||
-                                     (activeFilter === 'gk' && card.dataset.positionType === 'gk') ||
-                                     (activeFilter === 'boys' && card.dataset.gender === 'boys') ||
-                                     (activeFilter === 'girls' && card.dataset.gender === 'girls');
+                                     (activeFilter === 'attackers' && posType === 'attackers') ||
+                                     (activeFilter === 'midfielders' && posType === 'midfielders') ||
+                                     (activeFilter === 'defenders' && posType === 'defenders') ||
+                                     (activeFilter === 'gk' && posType === 'gk') ||
+                                     (activeFilter === 'boys' && gender === 'boys') ||
+                                     (activeFilter === 'girls' && gender === 'girls');
                                      
                     card.style.display = (nameMatch && posMatch) ? 'block' : 'none';
                 });
