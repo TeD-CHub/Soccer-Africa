@@ -53,7 +53,8 @@
 <button class="filter-btn active" data-filter="all">All</button>
 <button class="filter-btn" data-filter="attackers">Attackers</button>
 <button class="filter-btn" data-filter="midfielders">Midfielders</button>
-<button class="filter-btn" data-filter="defenders">Defenders &amp; GK</button>
+<button class="filter-btn" data-filter="defenders">Defenders</button>
+<button class="filter-btn" data-filter="gk">Goalkeepers</button>
 <button class="filter-btn" data-filter="boys">Boys</button>
 <button class="filter-btn" data-filter="girls">Girls</button>
 </div><div class="category-tabs"><button class="cat-tab active" data-target="u9">Under 9</button><button class="cat-tab" data-target="u11">Under 11</button><button class="cat-tab" data-target="u15">Under 15 (The Project)</button><button class="cat-tab" data-target="u17">Under 17</button><button class="cat-tab" data-target="u19">Under 19 (Senior)</button></div><div class="ea-cards-grid category-grid active" id="grid-u9">
@@ -241,7 +242,7 @@
 </div>
 </div>
 </div>
-<div class="ea-card clickable-card tier-bronze" data-dob="15-08-2015" data-foot="R" data-gender="boys" data-goals="0" data-height="152" data-img="assets/images/johnsean-maranga.jpg" data-name="Johnsean Maranga" data-pos="GK" data-position-type="defenders" data-weight="42" style="cursor: pointer;">
+<div class="ea-card clickable-card tier-bronze" data-dob="15-08-2015" data-foot="R" data-gender="boys" data-goals="0" data-height="152" data-img="assets/images/johnsean-maranga.jpg" data-name="Johnsean Maranga" data-pos="GK" data-position-type="gk" data-weight="42" style="cursor: pointer;">
 <div class="ea-card-inner">
 <div class="ea-card-top">
 <div class="ea-card-stats-quick">
@@ -432,6 +433,7 @@
                                      (activeFilter === 'attackers' && card.dataset.positionType === 'attackers') ||
                                      (activeFilter === 'midfielders' && card.dataset.positionType === 'midfielders') ||
                                      (activeFilter === 'defenders' && card.dataset.positionType === 'defenders') ||
+                                     (activeFilter === 'gk' && card.dataset.positionType === 'gk') ||
                                      (activeFilter === 'boys' && card.dataset.gender === 'boys') ||
                                      (activeFilter === 'girls' && card.dataset.gender === 'girls');
                                      
