@@ -538,10 +538,11 @@
                 const ctx = document.getElementById('scoutRadarChart').getContext('2d');
                 if(radarChart) radarChart.destroy();
                 
-                const isLightMode = document.body.classList.contains('light-mode');
-                const textColor = isLightMode ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)';
-                const gridColor = isLightMode ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)';
-                const highlightColor = isLightMode ? '#D90429' : '#ffd700';
+                // The modal has a dark background in both light and dark mode,
+                // so the chart should always use light colors for maximum readability.
+                const textColor = 'rgba(255, 255, 255, 0.7)';
+                const gridColor = 'rgba(255, 255, 255, 0.15)';
+                const highlightColor = '#ffd700';
                 
                 Chart.defaults.color = textColor;
                 radarChart = new Chart(ctx, {
@@ -551,11 +552,11 @@
                         datasets: [{
                             label: 'Stats',
                             data: dataVals,
-                            backgroundColor: isLightMode ? 'rgba(217, 4, 41, 0.2)' : 'rgba(212, 175, 55, 0.4)',
+                            backgroundColor: 'rgba(212, 175, 55, 0.35)',
                             borderColor: highlightColor,
                             pointBackgroundColor: highlightColor,
-                            pointHoverBackgroundColor: isLightMode ? '#fff' : '#fff',
-                            pointBorderColor: isLightMode ? '#fff' : '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointBorderColor: '#fff',
                             borderWidth: 2,
                         }]
                     },
