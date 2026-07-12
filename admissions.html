@@ -67,8 +67,7 @@
             </div>
 
             <div class="contact-form scroll-animate bg-darker br-8" style="max-width: 1000px; margin: 0 auto; border: 1px solid var(--black-border);">
-                <!-- Functional Formspree Integration -->
-                <form id="admissions-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_ID" method="POST">
+                <form id="admissions-form" action="mailto:ceo@soccerafricaint.com" method="POST" enctype="text/plain">
                     
                     <div class="form-step" id="step-1">
                         <h3 class="text-red mb-3" style="margin-bottom: 20px;">Step 1: Player Details</h3>
@@ -176,6 +175,49 @@
                                 currentStep--;
                                 steps[currentStep].style.display = 'block';
                             });
+                        });
+
+                        // Form submission handling
+                        const form = document.getElementById('admissions-form');
+                        form.addEventListener('submit', (e) => {
+                            e.preventDefault();
+                            
+                            const playerName = form.elements['player_name'].value;
+                            const dob = form.elements['dob'].value;
+                            const program = form.elements['program'].value;
+                            const position = form.elements['position'].value || 'N/A';
+                            
+                            const guardianName = form.elements['guardian_name'].value;
+                            const phone = form.elements['phone'].value;
+                            const email = form.elements['email'].value;
+                            const medical = form.elements['medical'].value || 'None';
+                            
+                            const message = form.elements['message'].value || 'None';
+                            
+                            const subject = encodeURIComponent(`New Player Registration: ${playerName}`);
+                            const body = encodeURIComponent(
+`SOCCER AFRICA FOOTBALL ACADEMY - PLAYER REGISTRATION
+
+PLAYER DETAILS:
+---------------------------------------------
+Player Name: ${playerName}
+Date of Birth: ${dob}
+Program: ${program}
+Position: ${position}
+
+GUARDIAN & MEDICAL:
+---------------------------------------------
+Parent/Guardian Name: ${guardianName}
+Phone Number: ${phone}
+Email Address: ${email}
+Medical Conditions/Allergies: ${medical}
+
+ADDITIONAL COMMENTS:
+---------------------------------------------
+${message}`
+                            );
+                            
+                            window.location.href = `mailto:ceo@soccerafricaint.com?subject=${subject}&body=${body}`;
                         });
                     });
                 </script>
