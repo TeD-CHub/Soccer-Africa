@@ -5,6 +5,7 @@
   "main": "build.js",
   "scripts": {
     "build": "node build.js",
+    "start": "npx http-server www -p 3000",
     "cap:sync": "npx cap sync",
     "cap:add-android": "npm install @capacitor/android && npx cap add android",
     "cap:add-ios": "npm install @capacitor/ios && npx cap add ios",

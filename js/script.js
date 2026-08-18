@@ -138,25 +138,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let deferredPrompt = null;
 
-    // Detect if device is running iOS
+    // Detect testing mode via URL parameter (e.g. ?test-pwa=true)
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceShow = urlParams.get('test-pwa') === 'true';
+
+    // Detect if device is running iOS or iPadOS (including Apple Silicon iPads)
     const isIos = () => {
         const userAgent = window.navigator.userAgent.toLowerCase();
-        return /iphone|ipad|ipod/.test(userAgent);
+        const isStandardIos = /iphone|ipad|ipod/.test(userAgent);
+        const isIPadOS = (navigator.maxTouchPoints > 0 && userAgent.includes('macintosh'));
+        return isStandardIos || isIPadOS;
     };
 
     // Detect if device is in standalone mode (already installed)
     const isStandalone = () => {
+        if (forceShow) return false;
         return (window.matchMedia('(display-mode: standalone)').matches) || (window.navigator.standalone === true);
     };
 
     // Check if the user has already dismissed the prompt recently
     const isPromptDismissed = () => {
+        if (forceShow) return false;
         const dismissedTime = localStorage.getItem('pwa-prompt-dismissed');
         if (!dismissedTime) return false;
         
         // Show again after 7 days if not installed
         const oneWeek = 7 * 24 * 60 * 60 * 1000;
         return (Date.now() - parseInt(dismissedTime, 10)) < oneWeek;
+    };
+
+    // Helper to show PWA banner
+    const showPWABanner = () => {
+        if (pwaBanner) {
+            setTimeout(() => {
+                pwaBanner.classList.remove('hidden');
+                setTimeout(() => pwaBanner.classList.add('show'), 50);
+            }, forceShow ? 500 : 3000);
+        }
+    };
+
+    // Helper to show iOS tooltip
+    const showIOSTooltip = () => {
+        if (iosTooltip) {
+            setTimeout(() => {
+                iosTooltip.classList.remove('hidden');
+                setTimeout(() => iosTooltip.classList.add('show'), 50);
+            }, forceShow ? 500 : 3000);
+        }
     };
 
     // Handle BeforeInstallPrompt event (Android/Chrome)
@@ -167,12 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
         deferredPrompt = e;
         
         // Show our custom banner if not installed and not recently dismissed
-        if (!isStandalone() && !isPromptDismissed() && pwaBanner) {
-            // Delay showing slightly for better user experience
-            setTimeout(() => {
-                pwaBanner.classList.remove('hidden');
-                setTimeout(() => pwaBanner.classList.add('show'), 50);
-            }, 3000);
+        if (!isStandalone() && !isPromptDismissed()) {
+            showPWABanner();
         }
     });
 
@@ -197,6 +221,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     pwaBanner.classList.remove('show');
                     setTimeout(() => pwaBanner.classList.add('hidden'), 500);
                 }
+            } else {
+                // Fallback for when deferredPrompt is not available (e.g. testing on desktop)
+                alert('To install the app:\n1. Click your browser menu button (e.g., three dots in Chrome, or settings).\n2. Select "Save and share" -> "Install app", or click the install icon in the URL bar.');
             }
         });
     }
@@ -215,18 +242,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Show iOS Add to Home Screen Tooltip
     // Only show on iOS, if using Safari, not already installed, and not recently dismissed
-    if (isIos() && !isStandalone() && !isPromptDismissed() && iosTooltip) {
-        // Simple check for Safari (Safari contains "safari" but not "crios" or "fxios")
+    if (forceShow || (isIos() && !isStandalone() && !isPromptDismissed())) {
         const userAgent = window.navigator.userAgent.toLowerCase();
         const isSafari = userAgent.includes('safari') && !userAgent.includes('crios') && !userAgent.includes('fxios');
         
-        if (isSafari) {
-            setTimeout(() => {
-                iosTooltip.classList.remove('hidden');
-                setTimeout(() => iosTooltip.classList.add('show'), 50);
-            }, 3000);
+        if (isSafari || forceShow) {
+            showIOSTooltip();
         }
     }
+
 
     // Handle iOS tooltip close button click
     if (iosCloseBtn) {
