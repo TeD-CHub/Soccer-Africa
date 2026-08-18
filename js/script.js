@@ -200,32 +200,46 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Handle install button click
-    if (pwaInstallBtn) {
-        pwaInstallBtn.addEventListener('click', () => {
-            if (deferredPrompt) {
-                // Show the native prompt
-                deferredPrompt.prompt();
-                // Wait for the user to respond to the prompt
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the install prompt');
-                    } else {
-                        console.log('User dismissed the install prompt');
-                    }
-                    deferredPrompt = null;
-                });
-                
-                // Hide banner
-                if (pwaBanner) {
-                    pwaBanner.classList.remove('show');
-                    setTimeout(() => pwaBanner.classList.add('hidden'), 500);
+    // Permanent Navbar Download Button Element
+    const navDownloadBtn = document.getElementById('nav-download-btn');
+
+    // Installation Action trigger function
+    const triggerInstall = () => {
+        if (deferredPrompt) {
+            // Show the native prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
                 }
-            } else {
-                // Fallback for when deferredPrompt is not available (e.g. testing on desktop)
-                alert('To install the app:\n1. Click your browser menu button (e.g., three dots in Chrome, or settings).\n2. Select "Save and share" -> "Install app", or click the install icon in the URL bar.');
+                deferredPrompt = null;
+            });
+            
+            // Hide banner if visible
+            if (pwaBanner) {
+                pwaBanner.classList.remove('show');
+                setTimeout(() => pwaBanner.classList.add('hidden'), 500);
             }
-        });
+        } else if (isIos()) {
+            // Show iOS tooltip instructions manually if they click navbar button
+            showIOSTooltip();
+        } else {
+            // Fallback for when deferredPrompt is not available (e.g. testing on desktop)
+            alert('To install the app:\n1. Click your browser menu button (e.g., three dots in Chrome, or settings).\n2. Select "Save and share" -> "Install app", or click the install icon in the URL bar.');
+        }
+    };
+
+    // Handle install button click (from banner)
+    if (pwaInstallBtn) {
+        pwaInstallBtn.addEventListener('click', triggerInstall);
+    }
+
+    // Handle permanent navbar button click
+    if (navDownloadBtn) {
+        navDownloadBtn.addEventListener('click', triggerInstall);
     }
 
     // Handle close button click

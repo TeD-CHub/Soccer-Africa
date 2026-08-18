@@ -1875,4 +1875,51 @@ body.light-mode .ios-tooltip-arrow {
     display: none !important;
 }
 
+/* Navigation Download App Button */
+.nav-download-btn {
+    background: linear-gradient(135deg, #EF233C, #D90429);
+    border: none;
+    color: var(--text-white) !important;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(217, 4, 41, 0.3);
+    transition: all 0.3s ease;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.nav-download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(217, 4, 41, 0.5);
+    background: linear-gradient(135deg, #ff2a44, #e60026);
+}
+
+.nav-download-btn i {
+    font-size: 0.9rem;
+}
+
+/* Mobile responsive adjustments */
+@media screen and (max-width: 992px) {
+    .nav-download-btn {
+        margin: 10px 0;
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+        border-radius: 5px;
+    }
+    
+    li:has(.nav-download-btn) {
+        width: 100%;
+        margin-left: 0 !important;
+        margin-top: 10px;
+    }
+}
+
+
 
