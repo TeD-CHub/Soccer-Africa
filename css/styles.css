@@ -1675,3 +1675,204 @@ body.light-mode .social-links a:hover {
 
 .text-white { color: var(--text-white) !important; }
 
+
+/* =========================================
+   PWA Install Banner & Tooltip
+   ========================================= */
+.pwa-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    width: calc(100% - 40px);
+    max-width: 500px;
+    background: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(229, 62, 62, 0.3);
+    border-radius: 16px;
+    padding: 15px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.pwa-banner.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+.pwa-banner-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+}
+
+.pwa-banner-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 2px solid var(--primary);
+}
+
+.pwa-banner-text {
+    flex: 1;
+}
+
+.pwa-banner-text h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-white);
+    letter-spacing: 0.5px;
+}
+
+.pwa-banner-text p {
+    margin: 3px 0 0 0;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    line-height: 1.3;
+}
+
+#pwa-install-btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 20px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #EF233C, #D90429);
+    border: none;
+    color: var(--text-white);
+    box-shadow: 0 4px 10px rgba(217, 4, 41, 0.3);
+    transition: all 0.2s ease;
+}
+
+#pwa-install-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(217, 4, 41, 0.5);
+}
+
+.pwa-close-btn {
+    background: none;
+    border: none;
+    color: var(--text-gray);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.pwa-close-btn:hover {
+    color: var(--text-white);
+}
+
+/* iOS Tooltip Style */
+.ios-tooltip {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(150px);
+    width: calc(100% - 40px);
+    max-width: 380px;
+    background: rgba(18, 18, 18, 0.98);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ios-tooltip.show {
+    transform: translateX(-50%) translateY(0);
+}
+
+.ios-tooltip-content {
+    position: relative;
+    color: var(--text-white);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.ios-tooltip-content p {
+    margin: 5px 0;
+}
+
+.ios-tooltip-content i {
+    color: var(--primary);
+    margin: 0 3px;
+    font-size: 1rem;
+}
+
+.ios-close-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: none;
+    border: none;
+    color: var(--text-gray);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.ios-close-btn:hover {
+    color: var(--text-white);
+}
+
+.ios-tooltip-arrow {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(18, 18, 18, 0.98);
+}
+
+/* Light mode adjustments */
+body.light-mode .pwa-banner {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(229, 62, 62, 0.2);
+}
+body.light-mode .pwa-banner-text h3 {
+    color: var(--text-black);
+}
+body.light-mode .pwa-banner-text p {
+    color: #4a5568;
+}
+body.light-mode .pwa-close-btn {
+    color: #a0aec0;
+}
+body.light-mode .pwa-close-btn:hover {
+    color: var(--text-black);
+}
+
+body.light-mode .ios-tooltip {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+body.light-mode .ios-tooltip-content {
+    color: var(--text-black);
+}
+body.light-mode .ios-close-btn {
+    color: #a0aec0;
+}
+body.light-mode .ios-close-btn:hover {
+    color: var(--text-black);
+}
+body.light-mode .ios-tooltip-arrow {
+    border-top-color: rgba(255, 255, 255, 0.98);
+}
+
+/* Utility to hide elements */
+.hidden {
+    display: none !important;
+}
+
+

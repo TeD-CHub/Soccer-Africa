@@ -1,0 +1,6 @@
+{
+  "appId": "com.soccerafrica.app",
+  "appName": "Soccer Africa",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

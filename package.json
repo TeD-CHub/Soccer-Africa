@@ -1,0 +1,32 @@
+{
+  "name": "soccer-africa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "cap:sync": "npx cap sync",
+    "cap:add-android": "npm install @capacitor/android && npx cap add android",
+    "cap:add-ios": "npm install @capacitor/ios && npx cap add ios",
+    "cap:open-android": "npx cap open android",
+    "cap:open-ios": "npx cap open ios"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeD-CHub/Soccer-Africa.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/TeD-CHub/Soccer-Africa/issues"
+  },
+  "homepage": "https://github.com/TeD-CHub/Soccer-Africa#readme",
+  "dependencies": {
+    "@capacitor/android": "^8.5.0",
+    "@capacitor/cli": "^8.5.0",
+    "@capacitor/core": "^8.5.0",
+    "@capacitor/ios": "^8.5.0"
+  }
+}
