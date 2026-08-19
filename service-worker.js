@@ -7,7 +7,6 @@ const ASSETS = [
   './coaches.html',
   './players.html',
   './gallery.html',
-  './contact.html',
   './admissions.html',
   './css/styles.css',
   './js/script.js',
