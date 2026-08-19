@@ -1,5 +1,4 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "www",
-  "cleanUrls": true
+  "outputDirectory": "www"
 }

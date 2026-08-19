@@ -325,7 +325,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navDownloadBtn) {
         navDownloadBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            showPWAModal();
+            if (deferredPrompt) {
+                // Trigger native install prompt directly (download app directly)
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            } else {
+                // Otherwise fall back to the modal overlay/instructions
+                showPWAModal();
+            }
         });
     }
 });
