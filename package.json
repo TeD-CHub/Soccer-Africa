@@ -24,6 +24,9 @@
     "url": "https://github.com/TeD-CHub/Soccer-Africa/issues"
   },
   "homepage": "https://github.com/TeD-CHub/Soccer-Africa#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@capacitor/android": "^8.5.0",
     "@capacitor/cli": "^8.5.0",
