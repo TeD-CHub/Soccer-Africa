@@ -5,6 +5,10 @@
   "bundledWebRuntime": false,
   "server": {
     "url": "https://soccerafricaint.com",
-    "cleartext": true
+    "cleartext": true,
+    "allowNavigation": [
+      "soccerafricaint.com",
+      "*.soccerafricaint.com"
+    ]
   }
 }
