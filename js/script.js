@@ -120,27 +120,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // Register Service Worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            // Note: service-worker.js is located at the web root
             navigator.serviceWorker.register('service-worker.js')
                 .then(reg => console.log('Service Worker registered successfully:', reg.scope))
                 .catch(err => console.error('Service Worker registration failed:', err));
         });
     }
 
-    // PWA Install Banner Elements
-    const pwaBanner = document.getElementById('pwa-install-banner');
-    const pwaInstallBtn = document.getElementById('pwa-install-btn');
-    const pwaCloseBtn = document.getElementById('pwa-close-btn');
-    
-    // iOS Tooltip Elements
-    const iosTooltip = document.getElementById('ios-install-tooltip');
-    const iosCloseBtn = document.getElementById('ios-close-btn');
-
     let deferredPrompt = null;
-
-    // Detect testing mode via URL parameter (e.g. ?test-pwa=true)
     const urlParams = new URLSearchParams(window.location.search);
     const forceShow = urlParams.get('test-pwa') === 'true';
+
+    // Remove legacy HTML elements if they exist to prevent UI conflicts
+    const cleanupLegacyPwaElements = () => {
+        const oldBanner = document.getElementById('pwa-install-banner');
+        const oldTooltip = document.getElementById('ios-install-tooltip');
+        if (oldBanner) oldBanner.remove();
+        if (oldTooltip) oldTooltip.remove();
+    };
+    cleanupLegacyPwaElements();
+
+    // Dynamically inject new PWA install modal HTML
+    const injectPWAModal = () => {
+        if (document.getElementById('pwa-install-modal')) return;
+        
+        const modalHtml = `
+            <div id="pwa-install-modal" class="pwa-modal">
+                <div class="pwa-modal-overlay"></div>
+                <div class="pwa-modal-card">
+                    <button id="pwa-modal-close-btn" class="pwa-modal-close-btn" aria-label="Close modal">&times;</button>
+                    <div class="pwa-modal-header">
+                        <img src="assets/images/logo.jpeg" alt="Soccer Africa Logo" class="pwa-modal-logo">
+                        <h2>Soccer Africa</h2>
+                        <div class="pwa-modal-subtitle">Football Academy</div>
+                    </div>
+                    <div class="pwa-modal-body">
+                        <p class="pwa-modal-description">Install the Soccer Africa App on your device for quick offline access, match updates, training schedules, and easy access!</p>
+                        <div id="pwa-modal-platform-content"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    };
 
     // Detect if device is running iOS or iPadOS (including Apple Silicon iPads)
     const isIos = () => {
@@ -167,114 +188,144 @@ document.addEventListener('DOMContentLoaded', () => {
         return (Date.now() - parseInt(dismissedTime, 10)) < oneWeek;
     };
 
-    // Helper to show PWA banner
-    const showPWABanner = () => {
-        if (pwaBanner) {
-            setTimeout(() => {
-                pwaBanner.classList.remove('hidden');
-                setTimeout(() => pwaBanner.classList.add('show'), 50);
-            }, forceShow ? 500 : 3000);
+    // Close Modal helper
+    const closeModal = () => {
+        const modal = document.getElementById('pwa-install-modal');
+        if (modal) {
+            modal.classList.remove('show');
         }
     };
 
-    // Helper to show iOS tooltip
-    const showIOSTooltip = () => {
-        if (iosTooltip) {
-            setTimeout(() => {
-                iosTooltip.classList.remove('hidden');
-                setTimeout(() => iosTooltip.classList.add('show'), 50);
-            }, forceShow ? 500 : 3000);
+    // Show PWA Modal and render platform specific instructions/buttons
+    const showPWAModal = () => {
+        injectPWAModal();
+        const modal = document.getElementById('pwa-install-modal');
+        const contentDiv = document.getElementById('pwa-modal-platform-content');
+        
+        if (!modal || !contentDiv) return;
+        
+        // Clear previous content
+        contentDiv.innerHTML = '';
+        
+        if (deferredPrompt) {
+            // Direct install prompt supported
+            contentDiv.innerHTML = `
+                <button id="pwa-modal-install-btn" class="pwa-modal-action-btn">Install App</button>
+                <button id="pwa-modal-later-btn" class="pwa-modal-secondary-btn">Maybe Later</button>
+            `;
+            
+            document.getElementById('pwa-modal-install-btn').addEventListener('click', () => {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+                closeModal();
+            });
+            
+            document.getElementById('pwa-modal-later-btn').addEventListener('click', () => {
+                closeModal();
+                localStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
+            });
+            
+        } else if (isIos()) {
+            // iOS instructions
+            contentDiv.innerHTML = `
+                <div class="pwa-instructions-list">
+                    <div class="pwa-instructions-title">
+                        <i class="fa-solid fa-mobile-screen-button"></i> iOS Safari Instructions
+                    </div>
+                    <ul>
+                        <li><i class="fa-solid fa-arrow-up-from-bracket"></i> <span>Tap the <strong>Share</strong> button in Safari (at the bottom toolbar).</span></li>
+                        <li><i class="fa-regular fa-square-plus"></i> <span>Scroll down and tap <strong>Add to Home Screen</strong>.</span></li>
+                        <li><i class="fa-solid fa-circle-check"></i> <span>Tap <strong>Add</strong> in the top-right corner to finish.</span></li>
+                    </ul>
+                </div>
+                <button id="pwa-modal-ok-btn" class="pwa-modal-action-btn">Got It</button>
+            `;
+            
+            document.getElementById('pwa-modal-ok-btn').addEventListener('click', () => {
+                closeModal();
+                localStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
+            });
+            
+        } else {
+            // Fallback for other browsers/desktops
+            contentDiv.innerHTML = `
+                <div class="pwa-instructions-list">
+                    <div class="pwa-instructions-title">
+                        <i class="fa-solid fa-laptop"></i> How to Install
+                    </div>
+                    <ul>
+                        <li><i class="fa-solid fa-ellipsis-vertical"></i> <span>Click the <strong>Menu</strong> button (three dots/settings) in your browser.</span></li>
+                        <li><i class="fa-solid fa-download"></i> <span>Select <strong>Install App</strong> or <strong>Save and share</strong> -> <strong>Install App</strong>.</span></li>
+                        <li><i class="fa-solid fa-circle-info"></i> <span>Alternatively, look for the <strong>Install</strong> icon <i class="fa-solid fa-circle-arrow-down"></i> on the right side of the address bar.</span></li>
+                    </ul>
+                </div>
+                <button id="pwa-modal-ok-btn" class="pwa-modal-action-btn">Got It</button>
+            `;
+            
+            document.getElementById('pwa-modal-ok-btn').addEventListener('click', () => {
+                closeModal();
+                localStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
+            });
         }
+        
+        // Setup close events
+        document.getElementById('pwa-modal-close-btn').addEventListener('click', () => {
+            closeModal();
+            localStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
+        });
+        
+        modal.querySelector('.pwa-modal-overlay').addEventListener('click', () => {
+            closeModal();
+            localStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
+        });
+
+        // Show modal
+        setTimeout(() => {
+            modal.classList.add('show');
+        }, 50);
     };
 
-    // Handle BeforeInstallPrompt event (Android/Chrome)
+    // Auto-trigger PWA popup modal on load for iOS/other platforms if not dismissed
+    window.addEventListener('load', () => {
+        if (!isStandalone() && !isPromptDismissed()) {
+            // Trigger auto popup for iOS Safari or other browsers immediately (since beforeinstallprompt is Chrome-specific)
+            if (isIos()) {
+                const userAgent = window.navigator.userAgent.toLowerCase();
+                const isSafari = userAgent.includes('safari') && !userAgent.includes('crios') && !userAgent.includes('fxios');
+                if (isSafari || forceShow) {
+                    setTimeout(showPWAModal, forceShow ? 500 : 5000);
+                }
+            } else if (!deferredPrompt && forceShow) {
+                // For local desktop testing
+                setTimeout(showPWAModal, 500);
+            }
+        }
+    });
+
+    // Handle BeforeInstallPrompt event (Android/Chrome/Edge)
     window.addEventListener('beforeinstallprompt', (e) => {
-        // Prevent Chrome 67 and earlier from automatically showing the prompt
         e.preventDefault();
-        // Stash the event so it can be triggered later.
         deferredPrompt = e;
         
-        // Show our custom banner if not installed and not recently dismissed
+        // Show our custom unified modal if not installed and not recently dismissed
         if (!isStandalone() && !isPromptDismissed()) {
-            showPWABanner();
+            setTimeout(showPWAModal, forceShow ? 500 : 5000);
         }
     });
 
     // Permanent Navbar Download Button Element
     const navDownloadBtn = document.getElementById('nav-download-btn');
-
-    // Installation Action trigger function
-    const triggerInstall = () => {
-        if (deferredPrompt) {
-            // Show the native prompt
-            deferredPrompt.prompt();
-            // Wait for the user to respond to the prompt
-            deferredPrompt.userChoice.then((choiceResult) => {
-                if (choiceResult.outcome === 'accepted') {
-                    console.log('User accepted the install prompt');
-                } else {
-                    console.log('User dismissed the install prompt');
-                }
-                deferredPrompt = null;
-            });
-            
-            // Hide banner if visible
-            if (pwaBanner) {
-                pwaBanner.classList.remove('show');
-                setTimeout(() => pwaBanner.classList.add('hidden'), 500);
-            }
-        } else if (isIos()) {
-            // Show iOS tooltip instructions manually if they click navbar button
-            showIOSTooltip();
-        } else {
-            // Fallback for when deferredPrompt is not available (e.g. testing on desktop)
-            alert('To install the app:\n1. Click your browser menu button (e.g., three dots in Chrome, or settings).\n2. Select "Save and share" -> "Install app", or click the install icon in the URL bar.');
-        }
-    };
-
-    // Handle install button click (from banner)
-    if (pwaInstallBtn) {
-        pwaInstallBtn.addEventListener('click', triggerInstall);
-    }
-
-    // Handle permanent navbar button click
     if (navDownloadBtn) {
-        navDownloadBtn.addEventListener('click', triggerInstall);
-    }
-
-    // Handle close button click
-    if (pwaCloseBtn) {
-        pwaCloseBtn.addEventListener('click', () => {
-            if (pwaBanner) {
-                pwaBanner.classList.remove('show');
-                setTimeout(() => pwaBanner.classList.add('hidden'), 500);
-                // Save dismiss state
-                localStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
-            }
-        });
-    }
-
-    // Show iOS Add to Home Screen Tooltip
-    // Only show on iOS, if using Safari, not already installed, and not recently dismissed
-    if (forceShow || (isIos() && !isStandalone() && !isPromptDismissed())) {
-        const userAgent = window.navigator.userAgent.toLowerCase();
-        const isSafari = userAgent.includes('safari') && !userAgent.includes('crios') && !userAgent.includes('fxios');
-        
-        if (isSafari || forceShow) {
-            showIOSTooltip();
-        }
-    }
-
-
-    // Handle iOS tooltip close button click
-    if (iosCloseBtn) {
-        iosCloseBtn.addEventListener('click', () => {
-            if (iosTooltip) {
-                iosTooltip.classList.remove('show');
-                setTimeout(() => iosTooltip.classList.add('hidden'), 500);
-                // Save dismiss state
-                localStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
-            }
+        navDownloadBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPWAModal();
         });
     }
 });
