@@ -4,12 +4,12 @@ const path = require('path');
 const srcDir = __dirname;
 const destDir = path.join(__dirname, 'www');
 
-// List of top-level files to copy directly
 const filesToCopy = [
   'robots.txt',
   'sitemap.xml',
   'manifest.json',
-  'service-worker.js'
+  'service-worker.js',
+  'soccer-africa.apk'
 ];
 
 // List of directories to copy recursively

@@ -171,6 +171,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return isStandardIos || isIPadOS;
     };
 
+    const isAndroid = () => {
+        const userAgent = window.navigator.userAgent.toLowerCase();
+        return userAgent.includes('android');
+    };
+
     // Detect if device is in standalone mode (already installed)
     const isStandalone = () => {
         if (forceShow) return false;
@@ -253,6 +258,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
             });
             
+        } else if (isAndroid()) {
+            // Android Direct APK download fallback
+            contentDiv.innerHTML = `
+                <div class="pwa-instructions-list" style="text-align: center; padding: 20px;">
+                    <i class="fa-solid fa-circle-arrow-down" style="font-size: 3rem; color: var(--primary); margin-bottom: 15px;"></i>
+                    <p style="margin-bottom: 0;">Your browser doesn't support direct web installation. Download the official Android App package (APK) directly to install it.</p>
+                </div>
+                <a href="soccer-africa.apk" download="soccer-africa.apk" id="pwa-modal-download-btn" class="pwa-modal-action-btn" style="display: block; text-decoration: none; text-align: center; line-height: 1;">Download APK</a>
+                <button id="pwa-modal-ok-btn" class="pwa-modal-secondary-btn">Maybe Later</button>
+            `;
+            
+            document.getElementById('pwa-modal-ok-btn').addEventListener('click', () => {
+                closeModal();
+                localStorage.setItem('pwa-prompt-dismissed', Date.now().toString());
+            });
         } else {
             // Fallback for other browsers/desktops
             contentDiv.innerHTML = `
@@ -324,9 +344,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const navDownloadBtn = document.getElementById('nav-download-btn');
     if (navDownloadBtn) {
         navDownloadBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (deferredPrompt) {
-                // Trigger native install prompt directly (download app directly)
+            if (isAndroid()) {
+                // Download APK directly (download app directly)
+                window.location.href = 'soccer-africa.apk';
+            } else if (deferredPrompt) {
+                e.preventDefault();
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
@@ -335,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     deferredPrompt = null;
                 });
             } else {
-                // Otherwise fall back to the modal overlay/instructions
+                e.preventDefault();
                 showPWAModal();
             }
         });
