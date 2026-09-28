@@ -100,6 +100,93 @@
                 <div class="title-underline mx-auto"></div>
             </div>
             
+            <!-- Featured Scholarship Milestone Spotlight -->
+            <div class="news-spotlight scroll-animate">
+                <div class="spotlight-visual-col">
+                    <div class="spotlight-image-container" id="scholarship-media-container" title="Click to view photo in lightbox">
+                        <img id="spotlight-main-img" src="assets/images/hospital-hill-scholarship.jpg" alt="Joel Okhanya and Rason Chitu in Hospital Hill School Uniform with Coach Arnold Maina" class="spotlight-img">
+                        
+                        <!-- Floating Badges on Image -->
+                        <div class="spotlight-img-badge top-badge">
+                            <i class="fas fa-graduation-cap"></i> Grade 10 Scholarship
+                        </div>
+                        <div class="spotlight-img-badge bottom-badge" id="spotlight-badge-label">
+                            <i class="fas fa-school"></i> Hospital Hill High School
+                        </div>
+                        
+                        <!-- Inset picture-in-picture preview showing grassroots origin -->
+                        <div class="spotlight-inset-preview" id="spotlight-inset-btn" title="Toggle Grassroots Roots (#69)">
+                            <img src="assets/images/okhanya-joel-grassroots.jpg" alt="Grassroots Pitch Training #69">
+                            <span class="inset-tag">Grassroots #69</span>
+                        </div>
+
+                        <!-- Zoom / Enlarge trigger button -->
+                        <button class="spotlight-zoom-btn" id="open-scholarship-lightbox" aria-label="Expand photo view" title="Expand Photo">
+                            <i class="fas fa-up-right-and-down-left-from-center"></i>
+                        </button>
+                    </div>
+
+                    <!-- Interactive Photo Switcher Tabs -->
+                    <div class="spotlight-tabs" role="tablist">
+                        <button class="spotlight-tab active" data-index="0" title="Hospital Hill School Milestone">
+                            <i class="fas fa-school"></i> <span>School Milestone</span>
+                        </button>
+                        <button class="spotlight-tab" data-index="1" title="Academy Pitch Roots">
+                            <i class="fas fa-futbol"></i> <span>Academy Roots</span>
+                        </button>
+                        <button class="spotlight-tab" data-index="2" title="Official Notice">
+                            <i class="fas fa-bullhorn"></i> <span>Official Notice</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="spotlight-content-col">
+                    <div>
+                        <div class="spotlight-header-meta">
+                            <span class="badge-featured"><i class="fas fa-award"></i> Featured Milestone</span>
+                            <span class="spotlight-date"><i class="far fa-calendar-alt"></i> September 8, 2026</span>
+                        </div>
+
+                        <h3 class="spotlight-headline">Changing Lives: Okhanya Joel & Rason Chitu Secure Football Scholarships to Hospital Hill School</h3>
+
+                        <div class="spotlight-pills">
+                            <span class="spotlight-pill"><i class="fas fa-user-graduate"></i> Grade 10 Full Scholarship</span>
+                            <span class="spotlight-pill"><i class="fas fa-handshake"></i> Brokered by Coach Arnold Maina</span>
+                            <span class="spotlight-pill"><i class="fas fa-heart"></i> Community Impact</span>
+                        </div>
+
+                        <p class="spotlight-intro">
+                            Soccer Africa Academy is immensely proud to announce a monumental breakthrough for our youth program: our players <strong>Okhanya Joel</strong> and <strong>Rason Chitu</strong> have earned prestigious football and academic scholarships to <strong>Hospital Hill High School for Grade 10</strong>!
+                        </p>
+
+                        <div class="spotlight-story-paragraphs">
+                            <p>
+                                <strong>Changing Lives Through Football:</strong> At Soccer Africa, our core mission is transforming potential into lifelong success. An education football scholarship is a life-changing milestone that represents the culmination of years of grueling practice, relentless discipline, and deep-seated passion from grassroots community pitches to premier high school halls.
+                            </p>
+                            <p>
+                                <strong>Giving Back to Our Community:</strong> We believe that every child, regardless of background, deserves a pathway to greatness. Soccer Africa actively invests in local talent, giving back by offering structured mentorship, elite training, and life skills that open doors to top-tier academic institutions and professional development.
+                            </p>
+                            <p>
+                                <strong>Dedicated Mentorship:</strong> This opportunity was brokered and championed by <strong>Coach Arnold Maina</strong> (assistant coach at Leads United and Soccer Africa coach). His commitment exemplifies our philosophy of standing by our athletes every step of the way.
+                            </p>
+                        </div>
+
+                        <div class="spotlight-quote-callout">
+                            <i class="fas fa-quote-left quote-mark"></i>
+                            <p class="quote-body">
+                                "An education football scholarship is a life-changing milestone which represents the culmination of years of grueling practices, relentless dedication, and a fantastic way of changing lives and inspiring the next generation of athletes. The real work begins now — Joel and Rason, earn your place in the team!"
+                            </p>
+                            <span class="quote-signoff">— Coach Arnold Maina & Soccer Africa Academy</span>
+                        </div>
+                    </div>
+
+                    <div class="spotlight-actions">
+                        <button class="btn btn-primary btn-sm" id="btn-view-photos"><i class="fas fa-images"></i> View Photo Story</button>
+                        <a href="admissions.html" class="btn btn-outline btn-sm"><i class="fas fa-user-plus"></i> Join the Academy</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="news-grid">
                 <div class="news-card scroll-animate" style="padding: 0; overflow: hidden;">
                     <img src="assets/images/nashon-autographs.jpg" alt="Autograph Session with Nashon Alembi" style="width: 100%; height: 200px; object-fit: cover; object-position: center 28%;">
@@ -231,6 +318,24 @@
             <p>Tap the share button <i class="fa-solid fa-arrow-up-from-bracket"></i> at the bottom and then select <strong>Add to Home Screen</strong> <i class="fa-regular fa-square-plus"></i>.</p>
         </div>
         <div class="ios-tooltip-arrow"></div>
+    </div>
+
+    <!-- Scholarship Photo Story Lightbox Modal -->
+    <div id="scholarship-lightbox-modal" class="scholarship-modal" aria-hidden="true" role="dialog">
+        <div class="scholarship-modal-overlay"></div>
+        <div class="scholarship-modal-dialog">
+            <button class="scholarship-modal-close" aria-label="Close Lightbox">&times;</button>
+            <div class="scholarship-modal-media">
+                <img id="lightbox-modal-img" src="assets/images/hospital-hill-scholarship.jpg" alt="Hospital Hill School Scholarship">
+                <button class="lightbox-nav-btn prev-btn" aria-label="Previous photo"><i class="fas fa-chevron-left"></i></button>
+                <button class="lightbox-nav-btn next-btn" aria-label="Next photo"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="scholarship-modal-caption">
+                <h4 id="lightbox-modal-title">Hospital Hill School Grade 10 Scholarship</h4>
+                <p id="lightbox-modal-desc">Joel Okhanya and Rason Chitu in their official green school uniform alongside Coach Arnold Maina upon arriving at Hospital Hill School.</p>
+                <div class="lightbox-counter" id="lightbox-counter">1 / 3</div>
+            </div>
+        </div>
     </div>
 
 </body>

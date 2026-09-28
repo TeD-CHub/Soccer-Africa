@@ -362,4 +362,157 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // --- Scholarship News Spotlight & Interactive Lightbox ---
+    const initScholarshipSpotlight = () => {
+        const spotlightImg = document.getElementById('spotlight-main-img');
+        const badgeLabel = document.getElementById('spotlight-badge-label');
+        const tabs = document.querySelectorAll('.spotlight-tab');
+        const insetBtn = document.getElementById('spotlight-inset-btn');
+        const lightboxModal = document.getElementById('scholarship-lightbox-modal');
+        const lightboxImg = document.getElementById('lightbox-modal-img');
+        const lightboxTitle = document.getElementById('lightbox-modal-title');
+        const lightboxDesc = document.getElementById('lightbox-modal-desc');
+        const lightboxCounter = document.getElementById('lightbox-counter');
+        const closeBtn = document.querySelector('.scholarship-modal-close');
+        const overlay = document.querySelector('.scholarship-modal-overlay');
+        const prevBtn = document.querySelector('.lightbox-nav-btn.prev-btn');
+        const nextBtn = document.querySelector('.lightbox-nav-btn.next-btn');
+        const zoomBtn = document.getElementById('open-scholarship-lightbox');
+        const viewPhotosBtn = document.getElementById('btn-view-photos');
+        const mediaContainer = document.getElementById('scholarship-media-container');
+
+        if (!spotlightImg && !lightboxModal) return;
+
+        const galleryData = [
+            {
+                src: 'assets/images/hospital-hill-scholarship.jpg',
+                label: 'Hospital Hill High School',
+                title: 'Hospital Hill School Grade 10 Scholarship',
+                desc: 'Joel Okhanya and Rason Chitu in their official green school uniform alongside Coach Arnold Maina and mentor upon arriving at Hospital Hill School.',
+                alt: 'Joel Okhanya and Rason Chitu in Hospital Hill School Uniform with Coach Arnold Maina'
+            },
+            {
+                src: 'assets/images/okhanya-joel-grassroots.jpg',
+                label: 'Soccer Africa Pitch Roots',
+                title: 'Grassroots Roots & Academy Dedication',
+                desc: 'Joel Okhanya (#69) at the academy grounds — representing years of grueling practice, relentless training, and character development at Soccer Africa.',
+                alt: 'Joel Okhanya in Soccer Africa red jersey #69 at grassroots training'
+            },
+            {
+                src: 'assets/images/scholarship-announcement.jpg',
+                label: 'Official Scholarship Release',
+                title: 'Official Community & Partner Release',
+                desc: 'Official announcement celebrating Joel Okhanya and Rason Chitu securing their football scholarship brokered by Coach Arnold Maina.',
+                alt: 'Official social announcement celebrating the football scholarship'
+            }
+        ];
+
+        let currentIndex = 0;
+
+        const updateSpotlightView = (index) => {
+            if (index < 0 || index >= galleryData.length) return;
+            currentIndex = index;
+            const item = galleryData[index];
+
+            if (spotlightImg) {
+                spotlightImg.style.opacity = '0.25';
+                setTimeout(() => {
+                    spotlightImg.src = item.src;
+                    spotlightImg.alt = item.alt;
+                    spotlightImg.style.opacity = '1';
+                }, 160);
+            }
+
+            if (badgeLabel) {
+                badgeLabel.innerHTML = `<i class="fas fa-camera"></i> ${item.label}`;
+            }
+
+            tabs.forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+            });
+        };
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', (e) => {
+                e.stopPropagation();
+                updateSpotlightView(index);
+            });
+        });
+
+        if (insetBtn) {
+            insetBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const nextIndex = currentIndex === 1 ? 0 : 1;
+                updateSpotlightView(nextIndex);
+            });
+        }
+
+        const openLightbox = (index) => {
+            if (!lightboxModal) return;
+            currentIndex = index;
+            const item = galleryData[index];
+            if (lightboxImg) {
+                lightboxImg.src = item.src;
+                lightboxImg.alt = item.alt;
+            }
+            if (lightboxTitle) lightboxTitle.textContent = item.title;
+            if (lightboxDesc) lightboxDesc.textContent = item.desc;
+            if (lightboxCounter) lightboxCounter.textContent = `${index + 1} / ${galleryData.length}`;
+
+            lightboxModal.classList.add('show');
+            lightboxModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeLightbox = () => {
+            if (!lightboxModal) return;
+            lightboxModal.classList.remove('show');
+            lightboxModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        };
+
+        const navigateLightbox = (direction) => {
+            let nextIndex = currentIndex + direction;
+            if (nextIndex < 0) nextIndex = galleryData.length - 1;
+            if (nextIndex >= galleryData.length) nextIndex = 0;
+            openLightbox(nextIndex);
+            updateSpotlightView(nextIndex);
+        };
+
+        if (zoomBtn) {
+            zoomBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openLightbox(currentIndex);
+            });
+        }
+
+        if (mediaContainer) {
+            mediaContainer.addEventListener('click', (e) => {
+                if (!e.target.closest('.spotlight-inset-preview') && !e.target.closest('.spotlight-zoom-btn')) {
+                    openLightbox(currentIndex);
+                }
+            });
+        }
+
+        if (viewPhotosBtn) {
+            viewPhotosBtn.addEventListener('click', () => {
+                openLightbox(0);
+            });
+        }
+
+        if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+        if (overlay) overlay.addEventListener('click', closeLightbox);
+        if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox(-1); });
+        if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); navigateLightbox(1); });
+
+        // Keyboard navigation for lightbox
+        document.addEventListener('keydown', (e) => {
+            if (!lightboxModal || !lightboxModal.classList.contains('show')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+    };
+    initScholarshipSpotlight();
 });
